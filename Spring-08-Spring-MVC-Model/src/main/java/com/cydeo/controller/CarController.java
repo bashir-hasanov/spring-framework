@@ -33,5 +33,6 @@ public class CarController {
         model.addAttribute("make", make);
         model.addAttribute("year", year);
         return "car/car-info";
+        //Path variables (params) can not be optional
     }
 }
