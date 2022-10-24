@@ -2,8 +2,8 @@ package com.cydeo.bootstrap;
 
 import com.cydeo.entity.Department;
 import com.cydeo.entity.Employee;
+import com.cydeo.entity.Region;
 import com.cydeo.enums.Gender;
-import com.cydeo.repository.DepartmentRepository;
 import com.cydeo.repository.EmployeeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -48,11 +48,25 @@ public class DataGenerator implements CommandLineRunner {
         Employee e5 = new Employee("Felix", "Blazer", "fblazer@mail.com",
                 LocalDate.of(2012, 7, 17), Gender.MALE, BigDecimal.valueOf(112000));
 
+        Region r1 = new Region("Europe", "Netherlands");
+        Region r2 = new Region("Asia", "Japan");
+        Region r3 = new Region("Africa", "Algeria");
+        Region r4 = new Region("America", "Mexico");
+        Region r5 = new Region("Europe", "France");
+
+
         e1.setDepartment(d1);
         e2.setDepartment(d2);
         e3.setDepartment(d3);
         e4.setDepartment(d4);
         e5.setDepartment(d5);
+
+        e1.setRegion(r1);
+        e2.setRegion(r2);
+        e3.setRegion(r3);
+        e4.setRegion(r4);
+        e5.setRegion(r5);
+
 
         departmentList.addAll(Arrays.asList(d1, d2, d3, d4, d5));
         employeeList.addAll(Arrays.asList(e1, e2, e3, e4, e5));
