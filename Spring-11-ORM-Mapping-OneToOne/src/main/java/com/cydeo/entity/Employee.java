@@ -26,6 +26,10 @@ public class Employee extends BaseEntity {
 
     private BigDecimal salary;
 
+    //@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}) -> // this annotation implements JOIN and creates a FOREIGN KEYC
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "departmentId")      // this annotation renames the FOREIGN KEY
+    private Department department;
 
     public Employee(String firstName, String lastName, String email,
                     LocalDate hireDate, Gender gender, BigDecimal salary) {

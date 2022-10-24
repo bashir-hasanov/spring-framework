@@ -17,11 +17,10 @@ import java.util.List;
 @Component
 public class DataGenerator implements CommandLineRunner {
 
-    DepartmentRepository departmentRepository;
+    // DepartmentRepository departmentRepository;
     EmployeeRepository employeeRepository;
 
-    public DataGenerator(DepartmentRepository departmentRepository, EmployeeRepository employeeRepository) {
-        this.departmentRepository = departmentRepository;
+    public DataGenerator(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -49,10 +48,16 @@ public class DataGenerator implements CommandLineRunner {
         Employee e5 = new Employee("Felix", "Blazer", "fblazer@mail.com",
                 LocalDate.of(2012, 7, 17), Gender.MALE, BigDecimal.valueOf(112000));
 
+        e1.setDepartment(d1);
+        e2.setDepartment(d2);
+        e3.setDepartment(d3);
+        e4.setDepartment(d4);
+        e5.setDepartment(d5);
+
         departmentList.addAll(Arrays.asList(d1, d2, d3, d4, d5));
         employeeList.addAll(Arrays.asList(e1, e2, e3, e4, e5));
 
-        departmentRepository.saveAll(departmentList);
+       // departmentRepository.saveAll(departmentList);
         employeeRepository.saveAll(employeeList);
 
     }
