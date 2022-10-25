@@ -27,6 +27,9 @@ public class Payment extends BaseEntity {
     @ManyToOne
     private Merchant merchant;
 
+    @ManyToOne
+    private Customer customer;
+
     public Payment(BigDecimal amount, LocalDate createdDate, Status paymentStatus) {
         this.amount = amount;
         this.createdDate = createdDate;

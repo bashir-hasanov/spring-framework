@@ -3,9 +3,8 @@ package com.cydeo.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -21,6 +20,8 @@ public class Customer extends BaseEntity {
     private String surName;
     private String userName;
 
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY) //default is EAGER
+    private List<Payment> paymentList;
     public Customer(String address, String email, String name, String surName, String userName) {
         this.address = address;
         this.email = email;
