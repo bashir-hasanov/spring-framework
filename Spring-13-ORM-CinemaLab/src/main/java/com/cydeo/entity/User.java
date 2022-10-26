@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class User extends BaseEntity {
 
     private String email;
-    private String userName;
+    private String username;
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY)
