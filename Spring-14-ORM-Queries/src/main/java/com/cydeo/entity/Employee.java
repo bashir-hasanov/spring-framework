@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "tables")
+@Table(name = "employees")
 @Data
 @NoArgsConstructor
 public class Employee extends BaseEntity {
@@ -22,6 +22,10 @@ public class Employee extends BaseEntity {
     private Gender gender;
     private Integer salary;
 
+    @ManyToOne
+    @JoinColumn(name = "department")
     private Department department;
+    @ManyToOne
     private Region region;
+
 }
