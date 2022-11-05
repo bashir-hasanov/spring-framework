@@ -56,7 +56,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> retrieveByDurationRange(List<Integer> durations);
 
     //Write a native query to list the top 5 most expensive movies
-    @Query(value = "SELECT TOP 5 * FROM movie ORDER BY price DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM movie ORDER BY price DESC LIMIT 5", nativeQuery = true)
     List<Movie> retrieveByTop5Movie();
 
 }
