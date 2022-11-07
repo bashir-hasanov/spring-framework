@@ -62,5 +62,15 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> retrieveAllTickets();
 
     //Write a native query to list all tickets where a specific value should be containable in the username or name or movie name
+    @Query(value = "SELECT * FROM t ticket JOIN ua user_account ON " +
+            "t.user_account_id = ua.id JOIN ad account_details ON " +
+            "ua.account_details_id = ad.id JOIN mc movie_cinema ON " +
+            "t.movie_cinema_id = mc.id JOIN m movie ON " +
+            "mc.movie_id = m.id WHERE ua.username ILIKE concat ('%', :username, '%')" +
+            "AND ad.name ILIKE concat ('%', :name, '%')" +
+            "AND m.name ILIKE concat ('%', :movieName, '%')", nativeQuery = true)
+    List<Ticket> fetchAllByGiven(@Param("username") String username,
+                                 @Param("name") String name,
+                                 @Param("movieName") String movieName);
 
 }
