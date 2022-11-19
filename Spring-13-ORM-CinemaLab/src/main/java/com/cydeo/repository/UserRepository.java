@@ -19,10 +19,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
 
     //Write a derived query to list all users that contain a specific name?
-    List<User> findByUsernameContains(String name);
+    List<User> findAllByAccountNameContains(String name);
 
     //Write a derived query to list all users that contain a specific name in the ignore case mode?
-    List<User> findByUsernameContainingIgnoreCase(String name);
+    List<User> findByAccountNameContainingIgnoreCase(String name);
 
     //Write a derived query to list all users with an age greater than a specified age?
     List<User> findByAccountAgeGreaterThan(Integer age);
@@ -44,7 +44,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // ------------------- Native QUERIES ------------------- //
 
     //Write a native query that returns all users that contain a specific name?
-    @Query(value = "SELECT * FROM user_account where username ILIKE concat('%', :name, '%')", nativeQuery = true)
+    @Query(value = "SELECT * FROM user_account ua JOIN acount_details ad ON " +
+            "ua.account_details_id = ad.id where ad.account_name ILIKE concat('%', :name, '%')", nativeQuery = true)
     List<User> fetchAllContainingName(@Param("name") String name);
 
     //Write a native query that returns all users?
@@ -52,7 +53,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> fetchAllUsers();
 
     //Write a native query that returns all users in the range of ages?
-    @Query(value = "SELECT * FROM ua user_account JOIN ad account_details ON" +
+    @Query(value = "SELECT * FROM user_account ua JOIN account_details ad ON" +
             " ua.account_details_id = ad.id WHERE ad.age BETWEEN ?1 AND ?2", nativeQuery = true)
     List<User> fetchByAgeRange(@Param("age1") Integer age, @Param("age2") Integer age2);
 
